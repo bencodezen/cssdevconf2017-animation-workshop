@@ -4,6 +4,10 @@
 
 **Where:** New Orleans, Louisiana
 
+## To Do
+
+- [ ] Go through `notes.md` and split it out into more manageable files
+
 ## Description
 
 Get up and running with web animation in less time than it would take to read all the tutorials you have bookmarked. In this workshop, you'll get an in-depth look at animating with CSS, JavaScript, and SVG through hands-on exercises while learning how to make your project stand out from the competition with effective animation.
