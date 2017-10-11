@@ -82,7 +82,43 @@
 - This can make `@keyframes` much more dynamic because changing them after they're in your CSS file.
 - **That means multiple elements can use the same keyframes but have DIFFERENT animations!!!!**
 
-## Basics of TweenMax & TimelineMax
+## Basics of TweenMax & TimelineMax w/ Sarah
+
+### Introduction
+
+- GreenSock is a company that makes TweenMax and TimelineMax. In other words, they are products but are still referenced as GreenSock as a whole in converstaion
+- GSAP performs as well if not better than some native technologies
+    - It's not that they're not leveraging native technologies
+    - They are just doing it in clever ways and paying attention to exactly what they're animating
+- Painting is one of the most expensive aspects of rendering, but GSAP's painting is really really low in comparison
+- Visual benchmarks are important because it is a separate benchmark from straight up performance benchmarks like FPS
+- Like it a lot because it helps a lot with workflow and cross-browser consistency
+- The issue with CSS animations:
+    - Sequencing animations is a manual process of delays and is not very sustainable
+    - Adjusting timing of an animation is so critical to the workflow and this becomes very expensive
+    - Basic coding workflow of having your animation be far from the element you're applying it to (i.e., scrolling down to your keyframe, then back up to the styles, then back down...)
+- **Pro Tip**: Opacity and transform are the most performant and best bang for buck when it comes to animation on the web
+- Killer workflow features:
+    - Simple syntax
+    - Timelines
+    - Nested timelines
+    - Draggable
+    - And more (found in slides)
+- Syntax
+    - Think of the actions (i.e., `to`, `from`, etc.) as sentences
+        - "Hey Tween[Max/Lite], grab this element and go ${action} ..."
+    - `fromTo` is good at the beginning of an animation because when you need the animation to restart from a certain position
+    - Stagger is amazing!!! For a cool example, check out this [SVG with Cycle Stagger CodePen by Sarah](https://codepen.io/sdras/pen/XmmjQb)
+- Timeline
+    - This is one of the primary features she loves
+    - It makes things so easy to change things that would normally make you want to shoot yourself if you did it in raw CSS
+    - **Pro Tip**: The industry standard for the timeline variable is `tl`
+    - The primary difference between the two different Timelines is that TimelineMax allows you to loop while TimelineLite does not
+    - You can nest timelines as well!
+- **Pro Tip**: In order to avoid momentary display due to HTML/CSS rendering before JS does its thing, set the visibility to hidden on the animated elements to start (and then set back to visible with TweenMax/TweenLite)
+- Percentage based transforms are cool! And unfortunately will never be part of the CSS animation spec, so it's a GreenSock specific thing!
+- The animations are fully responsive
+- **Pro Tip**: While you normally want to keep styles in CSS, this can become disjointed with team members because they don't know you need X styles for the animation. So Sarah recommends using the `TweenMax/TweeLite.set()` functionality to explicity associate the necessary styles directly with the animation to prevent any accidental code deletion!
 
 ## Theory: Classic Animation Principles Worth Stealing
 
@@ -91,6 +127,20 @@
 ## Memorable Quotes
 
 > "Why does it work like this? I'm sure there's a reason, but I'm going to yell about it anyways." - Val Head
+
+> "They don't pay me. I'm just a developer that found a tool I like." - Sarah Drasner on GreenSock
+
+## My Exercises
+
+[Dancing Robot CodePen](https://codepen.io/BenCodeZen/pen/ZXRMqG?editors=1100)
+
+## Presentation Notes
+
+- Great use of multiple screen capture GIFs in a single slide in order to slow the differences between different browsers
+- Great use of the zoom animation in order to make text more visible
+- Phenomenal CodePen where she has the code for the animation appear as the relative animation happens which is great for context
+- Hilarious use of GIF for "how I feel when I live code, but I'll do it anyways..."
+- Great use of progressing through code by showing the manual way and then layering on the benefits with each iteration and how it solves X pain point
 
 ## Resources
 
@@ -101,3 +151,5 @@
 - [BounceJS](http://bouncejs.com/)
 - [CSS Animation - MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/animation)
 - [Cubic Bezier Tool](http://cubic-bezier.com/#.17,.67,.83,.67)
+---
+- [GreenSock Ease Visualizer](https://greensock.com/ease-visualizer)
