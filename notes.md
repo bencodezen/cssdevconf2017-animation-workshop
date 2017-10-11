@@ -50,7 +50,7 @@
 - Tip: Remember that it is `@keyframes` and **NOT** `@keyframe`
 - There is a shorthand to consider:
     - `animation: ${name} ${duration} ${delay} ${iteration-count} ${direction}`
-        - **Pro Tip:** Even though there is no specific order required, at least start with the animation name. And decide on a convention with your team.
+        - **Pro Tip:** Even though there is no specific order required (except duration and delay needing to be one after the other), at least start with the animation name. And decide on a convention with your team.
 - You can define stages in your `@keyframes` with percentages and/or keywords.
     - **Pro Tip**: You can do floats with the percentages!
     - **Pro Tip**: It's best to pick one or the other for consistency (i.e., `from` == `0%` and `to` == `100%`)
@@ -128,7 +128,7 @@
 - How would we turn a many element scene from day to night?
     - **Pro Tip:** Recommends HSLA for colors in animation
 
-## Theory: Classic Animation Principles Worth Stealing
+## Theory: Classic Animation Principles Worth Stealing w/ Val
 
 - "The 12 Principles of Animation" was created by Disney
     - They are related concepts to help your animation become more life-like or simply communicate more effectively
@@ -201,7 +201,61 @@
     - A Plus Icon rotating to the right to take your attention out into the menu that expands out after clicking it. Love this example!
 - When motion design on the screen follows real life, it makes the experience that much better
 
-## SVG Animation
+## SVG Animation w/ Sarah
+
+- SVG is an actual element, so when you apply a background to it, it applies to everything
+- SVG has a viewbox which determines whether objects are visible
+    - The viewbox is thought of as an infinite graph paper with the origin at the center and we are asking for a window of it (with X positive going right and Y positive going down)
+    - *Note: The SVG's width is different from its viewbox*
+- So we could try targetting the circle, expand the viewbox and then use fill
+- Why SVG though?
+    - Making a star with HTML and CSS takes about 70 lines of code
+    - SVG was made for drawing unlike CSS
+    - You can reach inside of it and animated isolated elements
+- UI/UX Animation
+    - Pieces of the UI move to aid in an informative UX choreography. This can typically be done with well placed CSS, some JS to trigger interactions. Responsive can be achieved with good CSS media queries.
+- Standalone
+    - Used to illustrate concepts in the body of the page, either alongside or on its own. Most of the basis of this talk is compelx standalone animation. JavasScript is recommended for much longer implementations
+- Optimizing SVG
+    - Watch out for optimizing it too far in case you need certain elements to not be merged, or to have the ID to easily select things, etc.
+- DrawSVG
+    - This is a plugin GSAP to make your SVG look like they are drawing
+    - You're animating a really long offset of a dash (that wraps around the entire shape)
+    - `drawSVG: '50% 50%'` makes it withdraw into itself
+- Motion Along a Path
+    - This is one of the coolest things about SMIL, but the promise of support has a longer tail with GreenSock which...
+        - Has backwards compatability and cross browser even IE
+        - Support for this feature will move into CSS at some point, but it is pretty sparse at the moment
+    - `curviness` value
+        - Can just use paths as general coordinates and smooth out the motion between
+        - It doesn't simply get softer as the number go higher
+        - Imagine the coordinates as a pegs with rubber bands and the number impacting how rigid the bounce / effect is. Amazing analogy!
+    - `autoRotate` allows you to make something tilt towards the direction it is facing
+- MorphSVG
+    - You literally just tell it to go from Point A to B
+    - **Pro Tip:** Put everything you need into the SVG allows for far less back and forth and saves a lot of time when it comes to animation
+    - **Important:** It only works on path, if you need it for a shape, then use `convertToPath` in order to do it. 
+        - **Caution:** Once you convert it to a `path`, that's it!
+    - `findShapeIndex` is a tool that overlays on the SVG and shows you what is actually how the transform is being interpreted. Changing the number on `shapeIndex` creates different effects!! Whoa!!!
+        - In case you were thinking it, it's not for use in production though. 
+- Atmospheric and Elemental Motion
+    - Further away is less contract, blurry
+    - Things closer should be sharper and clearer
+    - Reducing precision allows for better understanding of what's happening
+    - Combine techniques
+- Apparently you can animate filters too! *mind blown*
+- Viewbox and SVG Origin
+    - `getBBox` is a JS method for getting the constraints around the element
+    - With GreenSock, you can animate the viewbox!
+    - Cool example of using this on a workflow chart and moving from A to B depending on what you select
+- Clipath
+    - You put `<clipPath>` in your `<defs>` and then use `clip-path: url(id)` 
+    - You can animate it
+
+## My Exercises
+
+- [Dancing Robot CodePen](https://codepen.io/BenCodeZen/pen/ZXRMqG?editors=1100)
+- [GreenSock Boxes](https://codepen.io/BenCodeZen/pen/MEXzGq?editors=0110)
 
 ## Memorable Quotes
 
@@ -211,10 +265,9 @@
 
 > "Animation cannot fix your bad design." - Val Head
 
-## My Exercises
+> "Since we're in JavaScript, we don't have to worry about the [CSS] spec." - Sarah Drasner joke about filters being unanimatable with CSS
 
-- [Dancing Robot CodePen](https://codepen.io/BenCodeZen/pen/ZXRMqG?editors=1100)
-- [GreenSock Boxes](https://codepen.io/BenCodeZen/pen/MEXzGq?editors=0110)
+> "This is not an animatable property. GreenSock, do you worst." - Sarah Drasner
 
 ## Presentation Notes
 
@@ -224,6 +277,7 @@
 - Hilarious use of GIF for "how I feel when I live code, but I'll do it anyways..."
 - Great use of progressing through code by showing the manual way and then layering on the benefits with each iteration and how it solves X pain point
 - The use of hover effect as "poking turtles" was cute
+- So many awesome CodePen examples shows just how awesome the techniques are
 
 ## Resources
 
@@ -242,3 +296,9 @@
 - [The 12 Principles of Animation Tumblr](http://the12principles.tumblr.com/)
 - [The 10 Principles of Motion Design GIF](http://designtaxi.com/news/389419/Animator-Uses-GIF-To-Explain-The-10-Principles-Of-Motion-Design/)
 - [Animated Triangles and Circle Narrative Example](https://www.youtube.com/watch?v=n9TWwG4SFWQ)
+- [Designing Interface Animation by Val Head](http://rosenfeldmedia.com/books/designing-interface-animation/)
+---
+[The Noun Project](https://thenounproject.com/)
+[freepik.com - Free Vectors](http://www.freepik.com/)
+[SVG OMG Optimization](https://jakearchibald.github.io/svgomg/)
+[Try SVG Plugins for Free in CodePen](https://codepen.io/GreenSock/pen/OPqpRJ)
